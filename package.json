@@ -1,0 +1,24 @@
+{
+    "name": "moldsmal",
+    "displayName": "Moldsmal",
+    "description": "",
+    "version": "1.0.0",
+    "author": {
+        "name": "Loy",
+        "email": "dadloy@qq.com",
+        "url": "https://x.com/LoaneTheSloane"
+    },
+    "contributors": [],
+    "publisher": "Sloane",
+    "license": "DoNotUseItEverywhereYouSonOfA",
+    "categories": [
+
+    ],
+    "contributes": {
+        "scripts": [
+            {
+                "path": "./main.lua"
+            }
+        ]
+    }
+}
