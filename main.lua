@@ -55,8 +55,9 @@ end
 
 function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIndex, offsetX, offsetY, canvasWidth,
                          canvasHeight)
-    local width = originalImage.width + 2 * boilStrength
-    local height = originalImage.height + 2 * boilStrength
+    local strengthCeil = math.ceil(boilStrength)
+    local width = originalImage.width + 2 * strengthCeil
+    local height = originalImage.height + 2 * strengthCeil
     seed = seed or 0.0
     frameIndex = frameIndex or 0
 
@@ -72,8 +73,8 @@ function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIn
 
     for y = 0, height - 1 do
         for x = 0, width - 1 do
-            local uvX = x - boilStrength
-            local uvY = y - boilStrength
+            local uvX = x - strengthCeil
+            local uvY = y - strengthCeil
 
             local noise_coord_x = boilDensity_w * (uvX + offsetX + sp_x)
             local noise_coord_y = boilDensity_h * (uvY + offsetY + sp_y)
@@ -82,8 +83,8 @@ function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIn
             local uvBiasX = math.cos(noise) * boilStrength
             local uvBiasY = math.sin(noise) * boilStrength
 
-            local srcX = math.floor(uvX + uvBiasX + 0.5)
-            local srcY = math.floor(uvY + uvBiasY + 0.5)
+            local srcX = uvX + math.floor(uvBiasX + 0.5)
+            local srcY = uvY + math.floor(uvBiasY + 0.5)
 
             local color
             if srcX >= 0 and srcX < originalImage.width and srcY >= 0 and srcY < originalImage.height then
@@ -94,7 +95,7 @@ function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIn
                 color = Color { r = 0, g = 0, b = 0, a = 0 }
             end
 
-            -- color = Color { r = uvBiasX * 128 + 128, g = uvBiasY * 128 + 128, b = 0, a = 255 }
+            -- color = Color { r = (uvX - srcX) * 128 + 128, g = (uvY - srcY) * 128 + 128, b = 0, a = 255 }
 
             newImage:drawPixel(x, y, color)
         end
