@@ -6,3 +6,5 @@ just click here ughhhhhh<br>
 by [@bluexel](https://x.com/yui15693054)<br>
 <img src="https://github.com/SL0ANE/TheMoldsmalPlugin/blob/main/pics/gui.gif" alt="image" width="428"/><br>
 by @[Launod](https://x.com/Launode1)<br>
+<img src="https://github.com/SL0ANE/TheMoldsmalPlugin/blob/main/pics/zerobot.gif" alt="image" width="480"/><br>
+by @[Troy Young](https://x.com/ZEROBOT2025)<br>
