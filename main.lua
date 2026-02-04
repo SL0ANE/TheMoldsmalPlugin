@@ -67,8 +67,7 @@ function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIn
     local sp = hash21(frameIndex + seed)
     local sp_x = sp[1] * 1024.0
     local sp_y = sp[2] * 1024.0
-    local boilDensity_w = boilDensity / canvasWidth
-    local boilDensity_h = boilDensity / canvasHeight
+    local boilDensity = boilDensity / math.min(canvasWidth, canvasHeight)
     local boilStrength_4pi = boilStrength * 4.0 * math.pi
 
     for y = 0, height - 1 do
@@ -76,8 +75,8 @@ function createBoilImage(originalImage, boilStrength, boilDensity, seed, frameIn
             local uvX = x - strengthCeil
             local uvY = y - strengthCeil
 
-            local noise_coord_x = boilDensity_w * (uvX + offsetX + sp_x)
-            local noise_coord_y = boilDensity_h * (uvY + offsetY + sp_y)
+            local noise_coord_x = boilDensity * (uvX + offsetX + sp_x)
+            local noise_coord_y = boilDensity * (uvY + offsetY + sp_y)
             local noise = perlin(noise_coord_x, noise_coord_y) * boilStrength_4pi
 
             local uvBiasX = math.cos(noise) * boilStrength
